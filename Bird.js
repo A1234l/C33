@@ -4,6 +4,8 @@ class Bird extends BaseClass {
     this.image = loadImage("sprites/bird.png");
     this.smokeImage = loadImage("sprites/smoke.png");
     this.trajectory =[];
+    Matter.Body.set(this.body, 'frictionAir', 0.005);
+    Matter.Body.setMass(this.body, this.body.mass * 4);
   }
 
   display() {
@@ -12,7 +14,7 @@ class Bird extends BaseClass {
 
     super.display();
 
-    if(this.body.velocity.x > 10 && this.body.position.x > 200){
+    if(this.body.velocity.x > 10 && this.body.position.x > 220 && gameState === 'launched'){
       var position = [this.body.position.x, this.body.position.y];
       this.trajectory.push(position);
     }
